@@ -1,0 +1,8 @@
+{
+  "name": "tweet-on-cli",
+  "version": "1.0.0",
+  "description": "Send tweets on the CLI",
+  "main": "index.js",
+  "author": "lwkchan ",
+  "license": "MIT"
+}
