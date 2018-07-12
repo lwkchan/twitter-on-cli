@@ -9,10 +9,12 @@
     "babel-preset-env": "^1.7.0",
     "commander": "^2.16.0",
     "inquirer": "^6.0.0",
-    "jest": "^23.4.0"
+    "jest": "^23.4.0",
+    "twitter": "^1.7.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-jest": "^23.4.0"
+    "babel-jest": "^23.4.0",
+    "eslint": "^5.1.0"
   }
 }
