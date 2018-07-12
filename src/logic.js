@@ -1,5 +1,5 @@
 class Logic {
-  constructor(twitterClient){
+  constructor (twitterClient) {
     this.client = twitterClient
   }
 }
