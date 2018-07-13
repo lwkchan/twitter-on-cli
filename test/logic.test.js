@@ -21,7 +21,7 @@ describe('Logic', () => {
       const spy = jest.spyOn(mockTwitterClient, 'post');
       logic.postTweet('Hello World');
 
-      expect(spy).toHaveBeenCalledWith('statuses/update', {status: 'Hello World'}, callback());
+      expect(spy).toHaveBeenCalledWith('statuses/update', {status: 'Hello World'});
     })
   });
 });

@@ -4,7 +4,7 @@ class Logic {
   }
 
   postTweet (tweet) {
-
+    this.client.post('statuses/update', {status: tweet})
   }
 }
 
