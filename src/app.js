@@ -1,13 +1,13 @@
-const App = function (twitterClient) {
+const App = function App (twitterClient) {
   this.client = twitterClient
 }
 
-App.prototype.postTweet = function (tweet) {
-  this.client.post('statuses/update', {status: tweet})
-    .then(function (tweet) {
-      console.log(tweet);
-    })
-    .catch(function (error) {
+App.prototype.postTweet = function postTweet (tweet) {
+  this.client.post('statuses/update', {status: tweet}).
+    then((response) => {
+      console.log(response);
+    }).
+    catch((error) => {
       console.error(error)
     })
 };
