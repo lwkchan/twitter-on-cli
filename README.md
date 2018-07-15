@@ -2,6 +2,7 @@
 A Command Line Interface (CLI) app which interacts with Twitter API
 
 At the moment, this app is *very* basic - it can only write Tweets to your Twitter feed. If I fancy later on, I'll look to expand functionality. My own ideas include:
+- Checking whether the user is sure to post a tweet before posting it
 - Searching for the last few tweets of a particular user
 - Retweeting
 - Liking Tweets
