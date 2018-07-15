@@ -6,13 +6,15 @@ describe('App', () => {
 
   beforeEach(() => {
     mockTwitterClient = {
-      access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-      access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-      consumer_key: process.env.TWITTER_CONSUMER_KEY,
-      consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+      options: {
+        access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+        access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+        consumer_key: process.env.TWITTER_CONSUMER_KEY,
+        consumer_secret: process.env.TWITTER_CONSUMER_SECRET
+      },
       post () {
- return Promise.resolve('Success')
-}
+        return Promise.resolve('Success')
+      }
     };
     app = new App(mockTwitterClient);
   });
@@ -23,17 +25,20 @@ describe('App', () => {
     });
     it('throws an error if no access keys are set', () => {
       const keylessClient = {
-        access_token_key: null,
-        access_token_secret: null,
-        consumer_key: null,
-        consumer_secret: null
+        options: {
+          access_token_key: null,
+          access_token_secret: null,
+          consumer_key: null,
+          consumer_secret: null
+        }
       };
+      // eslint-disable-next-line max-len
       const expectedError = 'Please set up API access in your environment variables'
 
       try {
         new App(keylessClient);
       } catch (error) {
-        expect(error).toEqual(expectedError)
+        expect(error).toEqual(Error(expectedError))
       }
     });
   });
