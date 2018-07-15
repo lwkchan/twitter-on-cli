@@ -10,7 +10,9 @@ describe('App', () => {
       access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
       consumer_key: process.env.TWITTER_CONSUMER_KEY,
       consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-      post () { return Promise.resolve('Success')}
+      post () {
+ return Promise.resolve('Success')
+}
     };
     app = new App(mockTwitterClient);
   });
@@ -20,18 +22,17 @@ describe('App', () => {
       expect(app.client).toEqual(mockTwitterClient);
     });
     it('throws an error if no access keys are set', () => {
-      let keylessClient = {
+      const keylessClient = {
         access_token_key: null,
         access_token_secret: null,
         consumer_key: null,
-        consumer_secret: null,
+        consumer_secret: null
       };
       const expectedError = 'Please set up API access in your environment variables'
 
       try {
         const clientlessApp = new App(keylessClient);
-      }
-      catch(error) {
+      } catch (error) {
         expect(error).toEqual(expectedError)
       }
     });
@@ -41,10 +42,7 @@ describe('App', () => {
     it('calls post on the mockTwitterClient with the correct parameters', () => {
       const spy = jest.spyOn(mockTwitterClient, 'post');
       const tweet = 'Hello World'
-      const expectedArguments = [
-                                  'statuses/update',
-                                  {status: tweet}
-                                ];
+      const expectedArguments = ['statuses/update',{status: tweet}];
 
       app.postTweet(tweet);
 
