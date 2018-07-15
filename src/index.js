@@ -20,9 +20,9 @@ program
   .alias('t')
   .description('Tweet')
   .action((tweet) => prompt(confirmTweet(tweet)).then(({confirm}) => {
-      confirm ?
-        app.postTweet(tweet) :
-        console.log('Aborted');
+      confirm
+        ? app.postTweet(tweet)
+        : console.log('Aborted');
     }))
 
 program.parse(process.argv)
