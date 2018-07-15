@@ -21,7 +21,9 @@
   },
   "scripts": {
     "test": "node_modules/jest/bin/jest.js --watchAll",
-    "lint": "eslint . --ext .js --fix"
+    "lint": "eslint . --ext .js --fix",
+    "pre-commit-test": "jest",
+    "pre-commit-message": "echo 'Running precommit... '"
   },
-  "pre-commit": ["lint"]
+  "pre-commit": ["pre-commit-message", "pre-commit-test", "lint"]
 }
