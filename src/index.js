@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-require('babel-register');
-const App = require('./app')
+const App = require('./app');
+const {prompt} = require('inquirer')
 const program = require('commander');
 const Twitter = require('twitter');
-/* eslint-disable camelcase */
 const client = new Twitter({
   access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
@@ -19,8 +18,16 @@ program
   .command('tweet')
   .alias('t')
   .description('Tweet')
-  .action((tweet) => {
-    app.postTweet(tweet)
-  });
+  .action((tweet) => prompt([
+      {
+        message: `Are you sure you want to Tweet:  ${tweet}?`,
+        name: 'confirm',
+        type: 'confirm'
+      }
+    ]).then(({confirm}) => {
+      if (confirm) {
+        app.postTweet(tweet)
+      }
+    }))
 
 program.parse(process.argv)
