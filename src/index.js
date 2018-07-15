@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const App = require('./app');
 const {prompt} = require('inquirer')
+const {confirmTweet} = require('./promptQuestions')
 const program = require('commander');
 const Twitter = require('twitter');
 const client = new Twitter({
@@ -18,16 +19,10 @@ program
   .command('tweet')
   .alias('t')
   .description('Tweet')
-  .action((tweet) => prompt([
-      {
-        message: `Are you sure you want to Tweet:  ${tweet}?`,
-        name: 'confirm',
-        type: 'confirm'
-      }
-    ]).then(({confirm}) => {
-      if (confirm) {
-        app.postTweet(tweet)
-      }
+  .action((tweet) => prompt(confirmTweet(tweet)).then(({confirm}) => {
+      confirm ?
+        app.postTweet(tweet) :
+        console.log('Aborted');
     }))
 
 program.parse(process.argv)
