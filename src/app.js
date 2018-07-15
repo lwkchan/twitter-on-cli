@@ -1,17 +1,16 @@
 const App = function App (twitterClient) {
-  console.log('initialising...')
   this._checkClient(twitterClient);
   this.client = twitterClient
 }
 
 App.prototype = {
   _checkClient: function _checkClient (twitterClient) {
-    const twitterClientOptions = twitterClient.options;
+    const {options} = twitterClient;
 
-    if (!twitterClientOptions.access_token_key ||
-        !twitterClientOptions.access_token_secret ||
-        !twitterClientOptions.consumer_key ||
-        !twitterClientOptions.consumer_secret
+    if (!options.access_token_key ||
+        !options.access_token_secret ||
+        !options.consumer_key ||
+        !options.consumer_secret
     ) {
       throw new Error('Please set up API access in your environment variables')
     }
