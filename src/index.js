@@ -19,10 +19,8 @@ program
   .command('tweet')
   .alias('t')
   .description('Tweet')
-  .action((tweet) => { app.postTweet(tweet)});
-
-program
-  .command('test')
-  .action(() => {console.log(client)})
+  .action((tweet) => {
+    app.postTweet(tweet)
+  });
 
 program.parse(process.argv)

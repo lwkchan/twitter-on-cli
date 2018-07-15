@@ -17,9 +17,9 @@ App.prototype = {
     }
   },
   postTweet: function postTweet (tweet) {
-    this.client.post('statuses/update', {status: tweet}).
-    then((response) => console.log(response)).
-    catch((error) => console.error(error))
+    this.client.post('statuses/update', {status: tweet})
+    .then((response) => console.log(response))
+    .catch((error) => console.error(error))
   }
 }
 
