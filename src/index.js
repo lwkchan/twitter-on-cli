@@ -13,13 +13,16 @@ const client = new Twitter({
 
 const app = new App(client)
 
-program
-  .version('0.1.0')
+program.version('0.1.0')
 
 program
   .command('tweet')
   .alias('t')
   .description('Tweet')
   .action((tweet) => { app.postTweet(tweet)});
+
+program
+  .command('test')
+  .action(() => {console.log(client)})
 
 program.parse(process.argv)

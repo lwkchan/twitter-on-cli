@@ -1,27 +1,25 @@
 const App = function App (twitterClient) {
+  console.log('initialising...')
   this._checkClient(twitterClient);
   this.client = twitterClient
 }
 
 App.prototype = {
-  postTweet: function (tweet) {
-    this.client.post('statuses/update', {status: tweet}).
-      then((response) => {
-        console.log(response);
-      }).
-      catch((error) => {
-        console.error(error)
-      })
-  },
+  _checkClient: function _checkClient (twitterClient) {
+    const twitterClientOptions = twitterClient.options;
 
-  _checkClient: function (twitterClient) {
-    if(!(twitterClient.access_token_key &&
-         twitterClient.access_token_secret &&
-         twitterClient.consumer_key &&
-         twitterClient.consumer_secret
-    )){
-      throw 'Please set up API access in your environment variables'
+    if (!twitterClientOptions.access_token_key ||
+        !twitterClientOptions.access_token_secret ||
+        !twitterClientOptions.consumer_key ||
+        !twitterClientOptions.consumer_secret
+    ) {
+      throw new Error('Please set up API access in your environment variables')
     }
+  },
+  postTweet: function postTweet (tweet) {
+    this.client.post('statuses/update', {status: tweet}).
+    then((response) => console.log(response)).
+    catch((error) => console.error(error))
   }
 }
 

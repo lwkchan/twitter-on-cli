@@ -31,7 +31,7 @@ describe('App', () => {
       const expectedError = 'Please set up API access in your environment variables'
 
       try {
-        const clientlessApp = new App(keylessClient);
+        new App(keylessClient);
       } catch (error) {
         expect(error).toEqual(expectedError)
       }
@@ -39,10 +39,10 @@ describe('App', () => {
   });
 
   describe('postTweet', () => {
-    it('calls post on the mockTwitterClient with the correct parameters', () => {
+    it('calls post on the twitterClient with the correct parameters', () => {
       const spy = jest.spyOn(mockTwitterClient, 'post');
       const tweet = 'Hello World'
-      const expectedArguments = ['statuses/update',{status: tweet}];
+      const expectedArguments = ['statuses/update', {status: tweet}];
 
       app.postTweet(tweet);
 
