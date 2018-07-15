@@ -20,7 +20,7 @@
     "pre-commit": "^1.2.2"
   },
   "scripts": {
-    "test": "node_modules/jest/bin/jest.js --watchAll",
+    "test": "jest --watchAll",
     "lint": "eslint . --ext .js --fix",
     "pre-commit-test": "jest",
     "pre-commit-message": "echo 'Running precommit... '"
