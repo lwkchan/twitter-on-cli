@@ -22,7 +22,7 @@
   },
   "scripts": {
     "test": "jest --watchAll",
-    "lint": "echo 'Linting and fixing'; eslint . --ext .js --fix",
+    "lint": "echo 'Linting and fixing'; eslint src test --fix",
     "pre-commit-test": "echo 'Running unit tests...'; jest",
     "pre-commit-message": "echo 'Running precommit tasks... '"
   },

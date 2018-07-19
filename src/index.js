@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const App = require('./app');
 const {prompt} = require('inquirer')
-const {confirmTweet} = require('./promptQuestions')
+const message = require('./promptMessages')
 const program = require('commander');
 const Twitter = require('twitter');
 const client = new Twitter({
@@ -13,13 +13,29 @@ const client = new Twitter({
 
 const app = new App(client)
 
-program.version('0.1.0')
+program
+  .version('0.1.0')
 
 program
   .command('tweet')
   .alias('t')
   .description('Tweet')
-  .action((tweet) => prompt(confirmTweet(tweet)).then(({confirm}) => {
+  .action((tweet) => {
+    /* eslint-disable no-magic-numbers */
+    if (process.argv.length > 4) {
+      // If there is more than one object following `tweet` command
+      console.log(message.incorrectFormat)
+      process.exit()
+    } else if (tweet.commands) {
+      // If the object is the command object
+      console.log(message.blankTweet)
+      process.exit()
+    } else {
+      return tweet
+    }
+  })
+  .action((tweet) => prompt(message.confirmTweet(tweet))
+  .then(({confirm}) => {
       confirm
         ? app.postTweet(tweet)
         : console.log('Aborted');
