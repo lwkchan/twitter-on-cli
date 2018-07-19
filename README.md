@@ -4,11 +4,10 @@ A Command Line Interface (CLI) app which interacts with Twitter API
 At the moment, this app is *very* basic - it can only write Tweets to your Twitter feed. If I fancy later on, I'll look to expand functionality. My own ideas include:
 
 - ~~Checking whether the user is sure to post a tweet before posting it~~ --Completed
+- Handle errors when not passing in the right parameter
 - Searching for the last few tweets of a particular user
 - Retweeting
 - Liking Tweets
-
-I'm also in the process of testing out [Aruba](https://github.com/cucumber/aruba), which is an extension for Ruby's RSpec framework for testing CLI apps.
 
 ## Setup
 
@@ -40,3 +39,10 @@ Or, to run as a global command, you'll need to run ```yarn link``` to make a sym
 ```
 tweep tweet 'this is what i want to Tweet to the world!'
 ```
+
+## Testing
+
+* Unit testing is done through Jest - to run these tests just run ```npm run test``` - this command watches for any changes made to the codebase as well.
+* Feature testing is done through Cucumber and Aruba - these are Ruby gems, so make sure you have Ruby installed to run these.
+  * When you have Ruby installed, run ```gem install bundler``` to install the handy Gem installer, then run ```bundle install``` to install the gems in this repo's Gemfile. The tests assume that you have environment variables and the global ```tweep``` command set up (see above in the Setup section if you haven't done so yet).
+  * Run ```cucumber``` to run all the tests. Be warned though, that some tests will actually send out real tweets to your linked account. To avoid doing this too much, I've included tags in the Cucumber feature tests. To run a test with a specific tag, just use the command ```cucumber --tag @tagname``` replacing 'tagname' with the relevant feature test tag.
